@@ -2,15 +2,17 @@
 
 Welcome! This repository is used for custom sitecore Search demos within the SE organization. It is built on NextJs and leverages the [Sitecore Search JS SDK for React](https://doc.sitecore.com/search/en/developers/search-js-sdk-for-react/introduction-to-sitecore-search-js-sdk-for-react.html).
 
+These instructions assume you have some background in developing apps in React or NextJS. For more detailed instructions that are beginner-friendly, follow the steps outlined here instead:  [Search Sandbox (Beginner Instructions) in Loop](https://sitecore1.sharepoint.com/:fl:/g/contentstorage/CSP_767ac533-ba73-4b47-9e6b-d9c9bba230a8/Ed8sMbXLzjNKoxXd4fOZs7cBcY0x4S9b72l7FIawFwLCjg?e=MsHWgp&nav=cz0lMkZjb250ZW50c3RvcmFnZSUyRkNTUF83NjdhYzUzMy1iYTczLTRiNDctOWU2Yi1kOWM5YmJhMjMwYTgmZD1iJTIxTThWNmRuTzZSMHVlYTluSnU2SXdxSEV0NjNGdTJpbEVpcWpJTGNOZDd3YUEyY0ZUVDhEelQ1cTZjZ1paZEpLSiZmPTAxM1BQWjM2VzdGUVkzTFM2T0dORktHRk81NEhaWlRNNVgmYz0lMkYmYT1Mb29wQXBwJnA9JTQwZmx1aWR4JTJGbG9vcC1wYWdlLWNvbnRhaW5lciZ4PSU3QiUyMnclMjIlM0ElMjJUMFJUVUh4emFYUmxZMjl5WlRFdWMyaGhjbVZ3YjJsdWRDNWpiMjE4WWlGTk9GWTJaRzVQTmxJd2RXVmhPVzVLZFRaSmQzRklSWFEyTTBaMU1tbHNSV2x4YWtsTVkwNWtOM2RoUVRKalJsUlVPRVI2VkRWeE5tTm5XbHBrU2t0S2ZEQXhNMUJRV2pNMlVVSllVVUZTTjBGUlRVVmFSRXRIUWtnMU4xTkxVME0zVFVVJTNEJTIyJTJDJTIyaSUyMiUzQSUyMmY5ZjFjZjJkLTdkMDAtNDQyMi04ZTllLWIwY2YwYjlkODU3NCUyMiU3RA%3D%3D)
+
 ## Table of contents
 - [Prerequisites](#prerequisites)
 - [CEC Setup](#cec-setup)
 - [Getting Started with a new project](#getting-started-with-a-new-project)
-- [Customizing your Project](#customizing-your-project)
-- [Running your Previously Created Project](#running-your-previously-created-project)
+- [Customizing your Demo](#customizing-your-demo)
 - [Troubleshooting](#troubleshooting)
   - [This Site Can't be Reached](#this-site-cant-be-reached)
   - [Error running package installation](#error-running-package-installation)
+  - [Error Starting Application](#error-starting-application)
   - [Missing env File](#missing-env-file)
 
 ## Prerequisites
@@ -32,47 +34,24 @@ While not required, it is recommended to run through the [CEC setup](https://sit
 
 ## Getting Started with a new project
 
-The following setup only needs to be run once per local project. It is recommended to create a new local project per customer demo. This allows you to prep for multiple search demos at a time without overriding any changes.
 
-If you are trying to run a project that was previously created, follow the instructions in [Running your previously created Project](#running-your-previously-created-project)
+We recommend setting up a new project for each custom Sitecore Search Demo you run. This allows you to refer back to old demos or work on multiple at a time if necessary.
 
-These instructions take you through the process of using the default terminal built into VS code through the entire process. Although you can use any command-line interface you choose. Helpful links to command-line cheat sheet resources have been provided in the prerequisites section if you get stuck at any point.
-
-**Clone the Local Repository**
-
-Open VS Code and open the terminal by clicking **Terminal** in the top menu, then selecting **New Terminal**. This will open a terminal window at the bottom of the VS Code window.
-
-Now, in the Terminal window, navigate to the folder where you want to save the project using the `cd` command (change directory). For example:
-```bash
-cd path/to/your/folder
-```
-
-Once in the correct directory, paste the following command and wait for the install to run
+In your terminal, clone the repository in the folder of your choice (rename folder for clarity, e.g., customer name)
 
 ```bash
-git clone https://github.com/SitecoreNA/Sitecore-Search-TS-SDK-Starter-Kit.git
-
-# OR if you want to specify your own folder name. This is recommended for easier organization.
-git clone https://github.com/SitecoreNA/Sitecore-Search-TS-SDK-Starter-Kit.git <your-folder-name>
+git clone https://github.com/SitecoreNA/Sitecore-Search-TS-SDK-Starter-Kit.git <project-name>
 ```
 
-Now, open the folder containing the cloned repository in VS Code by clicking `File > Open Folder`... and select the folder you just cloned. You should then see the files in the left-hand side panel.
-
-**Install the Required Packages**
-
-The next step is to install the required packages (dependencies) that the project needs to run. 
-
-Make sure you're in the correct directory (where your project files are). You may still be in the parent directory in which case, use `cd your-folder-name` to navigate to the newly created folder. You can check your current directory by using the command `pwd`, for Mac users or `cd` for Windows users.
-
-Install the required packages by running the following command:
+Navigate into your newly created project folder and install the necessary dependencies.
 
 ```bash
 npm i
 ```
 
-**Create ENV file**
+Open your project files in the code editor of your choice.
 
-In the root of your new project folder, create an **.env** file, then paste the following environment variables inside.
+In the root of your new project folder, create an **.env** file, then paste the following environment variables inside. 
 
 ```bash
 NEXT_PUBLIC_SEARCH_ENV=prod
@@ -81,13 +60,11 @@ NEXT_PUBLIC_SEARCH_API_KEY=<INSERT API KEY>
 NEXT_PUBLIC_SEARCH_SOURCE=<INSERT SOURCE ID>
 ```
 
-You will need to replace the **Customer Key** and **API Key** with the values from the Developer Resources section in the CEC domain you are leveraging. We are generally useing the domain called **Sales Engineering - AMS**.
+You will need to replace the **Customer Key** and **API Key** with the values from the Developer Resources > Api Access in the CEC domain you are leveraging. We are generally using the domain called **Sales Engineering - AMS**.
 
-The **Source ID** will be the RFKID generated for the source you indexed during the [CEC setup](https://sitecore1.sharepoint.com/:fl:/g/contentstorage/CSP_767ac533-ba73-4b47-9e6b-d9c9bba230a8/ETYosfOL5LpHiId-S6Ke7FgBgVPUzVzmLFoI4vSsoxHF6g?e=3SkbQ2&nav=cz0lMkZjb250ZW50c3RvcmFnZSUyRkNTUF83NjdhYzUzMy1iYTczLTRiNDctOWU2Yi1kOWM5YmJhMjMwYTgmZD1iJTIxTThWNmRuTzZSMHVlYTluSnU2SXdxSEV0NjNGdTJpbEVpcWpJTGNOZDd3YUEyY0ZUVDhEelQ1cTZjZ1paZEpLSiZmPTAxM1BQWjM2UldGQ1k3SEM3RVhKRFlSQjM2Sk9SSjUzQ1kmYz0lMkYmYT1Mb29wQXBwJnA9JTQwZmx1aWR4JTJGbG9vcC1wYWdlLWNvbnRhaW5lciZ4PSU3QiUyMnclMjIlM0ElMjJUMFJUVUh4emFYUmxZMjl5WlRFdWMyaGhjbVZ3YjJsdWRDNWpiMjE4WWlGTk9GWTJaRzVQTmxJd2RXVmhPVzVLZFRaSmQzRklSWFEyTTBaMU1tbHNSV2x4YWtsTVkwNWtOM2RoUVRKalJsUlVPRVI2VkRWeE5tTm5XbHBrU2t0S2ZEQXhNMUJRV2pNMlVVSllVVUZTTjBGUlRVVmFSRXRIUWtnMU4xTkxVME0zVFVVJTNEJTIyJTJDJTIyaSUyMiUzQSUyMmE0ZWJhOTAwLWE4NDYtNGMzYi1hYjc0LTZlNWFiNjcyZTEyYiUyMiU3RA%3D%3D).
+The **Source ID** will be generated from source you set up during the [CEC setup](https://sitecore1.sharepoint.com/:fl:/g/contentstorage/CSP_767ac533-ba73-4b47-9e6b-d9c9bba230a8/ETYosfOL5LpHiId-S6Ke7FgBgVPUzVzmLFoI4vSsoxHF6g?e=3SkbQ2&nav=cz0lMkZjb250ZW50c3RvcmFnZSUyRkNTUF83NjdhYzUzMy1iYTczLTRiNDctOWU2Yi1kOWM5YmJhMjMwYTgmZD1iJTIxTThWNmRuTzZSMHVlYTluSnU2SXdxSEV0NjNGdTJpbEVpcWpJTGNOZDd3YUEyY0ZUVDhEelQ1cTZjZ1paZEpLSiZmPTAxM1BQWjM2UldGQ1k3SEM3RVhKRFlSQjM2Sk9SSjUzQ1kmYz0lMkYmYT1Mb29wQXBwJnA9JTQwZmx1aWR4JTJGbG9vcC1wYWdlLWNvbnRhaW5lciZ4PSU3QiUyMnclMjIlM0ElMjJUMFJUVUh4emFYUmxZMjl5WlRFdWMyaGhjbVZ3YjJsdWRDNWpiMjE4WWlGTk9GWTJaRzVQTmxJd2RXVmhPVzVLZFRaSmQzRklSWFEyTTBaMU1tbHNSV2x4YWtsTVkwNWtOM2RoUVRKalJsUlVPRVI2VkRWeE5tTm5XbHBrU2t0S2ZEQXhNMUJRV2pNMlVVSllVVUZTTjBGUlRVVmFSRXRIUWtnMU4xTkxVME0zVFVVJTNEJTIyJTJDJTIyaSUyMiUzQSUyMmE0ZWJhOTAwLWE4NDYtNGMzYi1hYjc0LTZlNWFiNjcyZTEyYiUyMiU3RA%3D%3D). **If you haven’t generated your Source ID yet, make sure to complete that setup first before continuing**.
 
-**Start the App**
-
-To run the application, you can use the following command in the terminal:
+Now you're ready to run the application.
 
 ```bash
 npm run dev
@@ -95,34 +72,30 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-![Default Homepage](./public/default-home.png)
-  
+![App home](./public/default-home.png)
 
-## Customizing your Project
+
+## Customizing your Demo
 
 This application provides the essential components and functionality to run a search demo out of the box, and includes Sitecore branded default components.
 
-To customize some of the branding elements as well as use your own widgets you may have built in the CEC, in your file explorer panel (not terminal) in VS code, find the **customizations.ts** file in `/src/app/_data/customizations.ts` and open it.
+To customize some of the branding elements as well as use your own widgets you may have built in the CEC, in your project folder, find the **customizations.ts** file in `/src/app/_data/customizations.ts` and open it.
 
 ![Customizations File](./public/customizations-file.png)
 
 Here you will find variables which allow you to override some of the most common customizations. For example, changing the header logo or selecting your own Q&A default question.
 
+### Updating Footer Links
+
 To change the default links within the footer component, find the **footer.json** file in `/src/app/_data/footer.json` and open it. You can then swap out the links with examples from the customers website.
 
 **For those who are more advanced with their coding skills**, feel free to adjust any of the components to your needs. For example, you may want to adjust the default header to be more in line with the customer's website header. 
 
-## Running your Previously Created Project
-
-Open VS code and your terminal. Navigate to your project directory in your command line using `cd path/to/your/folder`. 
-
-**Helpful Hint** To quickly get started, open a VS Code window by dragging your project folder onto the VS code app icon on your computer. This should automatically open your project in VS code and start you at the proper location within your terminal.
-
-If you've already gone through all the initial setup steps before, simply run `npm run dev` to start up your project going forward.
-
 ## Troubleshooting
 
-Refer to your terminal and/or browser console for troublshooting errors
+Refer to your terminal and/or browser console for troublshooting errors.
+
+Additional Troubleshooting information may be found here as well: [Search Setup Troubleshooting](https://sitecore1.sharepoint.com/:fl:/g/contentstorage/CSP_767ac533-ba73-4b47-9e6b-d9c9bba230a8/Ef2wibsjLYtFvslrvL-S074BqltyhbGmNd2gqN-zeMD_wQ?e=ztgFxY&nav=cz0lMkZjb250ZW50c3RvcmFnZSUyRkNTUF83NjdhYzUzMy1iYTczLTRiNDctOWU2Yi1kOWM5YmJhMjMwYTgmZD1iJTIxTThWNmRuTzZSMHVlYTluSnU2SXdxSEV0NjNGdTJpbEVpcWpJTGNOZDd3YUEyY0ZUVDhEelQ1cTZjZ1paZEpLSiZmPTAxM1BQWjM2WDVXQ0UzV0laTlJOQzM1U0xMWFM3WkZVNTYmYz0lMkYmYT1Mb29wQXBwJnA9JTQwZmx1aWR4JTJGbG9vcC1wYWdlLWNvbnRhaW5lciZ4PSU3QiUyMnclMjIlM0ElMjJUMFJUVUh4emFYUmxZMjl5WlRFdWMyaGhjbVZ3YjJsdWRDNWpiMjE4WWlGTk9GWTJaRzVQTmxJd2RXVmhPVzVLZFRaSmQzRklSWFEyTTBaMU1tbHNSV2x4YWtsTVkwNWtOM2RoUVRKalJsUlVPRVI2VkRWeE5tTm5XbHBrU2t0S2ZEQXhNMUJRV2pNMlVVSllVVUZTTjBGUlRVVmFSRXRIUWtnMU4xTkxVME0zVFVVJTNEJTIyJTJDJTIyaSUyMiUzQSUyMmE0ZWJhOTAwLWE4NDYtNGMzYi1hYjc0LTZlNWFiNjcyZTE1MyUyMiU3RA%3D%3D)
 
 ### This Site Can't be Reached
 
@@ -144,7 +117,7 @@ npm error enoent This is related to npm not being able to find a file.
 ```
 Use `cd` to navigate to your repositories correct path on your computer.
 
-**Helpful Hint:** You can check your current directory by using the command `pwd`, for Mac users or `cd` for Windows users. To automatically open your terminal to the correct path of your project, would be to fully close VS code, then reopen by dragging the folder onto the VS code app icon. This should automatically open your project in VS code and start you at the proper location within your terminal.
+**Helpful Hint:** You can check your current directory by using the command `pwd` (Mac users) or `cd` (Windows users). To automatically open your terminal to the correct path of your project, would be to fully close VS code, then reopen by dragging the folder onto the VS code app icon. This should automatically open your project in VS code and start you at the proper location within your terminal.
 
 ### Error Starting Application
 
