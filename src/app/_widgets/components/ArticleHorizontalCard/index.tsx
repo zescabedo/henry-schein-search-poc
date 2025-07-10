@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import type { ActionProp, ItemClickedAction } from '@sitecore-search/react';
 import { ArticleCard } from '@sitecore-search/ui';
 import Image from 'next/image'
+import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
 
 type ArticleCardItemCardProps = {
   className?: string;
@@ -13,10 +14,11 @@ type ArticleCardItemCardProps = {
   onItemClick: ActionProp<ItemClickedAction>;
   index: number;
 };
-const DEFAULT_IMG_URL = 'https://placehold.co/500x300?text=No%20Image'; // TODO: Update with corresponding fallback image
 
 const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index }: ArticleCardItemCardProps) => {
   const router = useRouter();
+  const validImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+
   return (
     <ArticleCard.Root
       key={article.id}
@@ -24,7 +26,7 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
     >
       <div className="w-[25%] flex-none overflow-hidden bg-gray-200 ">
         <Image
-          src={article?.image_url || DEFAULT_IMG_URL}
+          src={validImageUrl}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           alt='alt'
           width={500}

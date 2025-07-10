@@ -1,6 +1,7 @@
 import { ArticleCard } from '@sitecore-search/ui';
 import Link from 'next/link';
 import Image from 'next/image';
+import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
 
 type ArticleItemCardProps = {
   className?: string;
@@ -16,9 +17,10 @@ type ArticleItemCardProps = {
   index: number;
 };
 
-const DEFAULT_IMG_URL = 'https://placehold.co/500x300?text=No%20Image';
 
 const ArticleItemCard = ({ className = '', article }: ArticleItemCardProps) => {
+  const validImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+
   return (
     <ArticleCard.Root
       key={article.id}
@@ -26,7 +28,7 @@ const ArticleItemCard = ({ className = '', article }: ArticleItemCardProps) => {
     >
       <div className="aspect-h-1 aspect-w-1 h-28 w-full overflow-hidden rounded-t-md bg-gray-200 sm:aspect-none">
         <Image
-          src={article.image_url || DEFAULT_IMG_URL}
+          src={validImageUrl}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           alt={article.name || article.title}
           width={500}

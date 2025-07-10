@@ -66,7 +66,12 @@ export const QuestionsAnswersComponent = ({ defaultKeyphrase = '', defaultRelate
       relatedQuestions: defaultRelatedQuestions,
     },
     query: (query) => {
-      query.getRequest().addSource(SEARCH_CONFIG.source)
+      if (SEARCH_CONFIG.source !== '') {
+        const sources = SEARCH_CONFIG.source.split('|');
+        sources.forEach(source => {
+            query.getRequest().addSource(source.trim());
+        });
+      }
     }
   });
   return (

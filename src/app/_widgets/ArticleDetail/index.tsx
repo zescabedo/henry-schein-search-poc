@@ -24,7 +24,10 @@ export const ArticleDetailComponent = ({ id }: ArticleDetailProps): JSX.Element 
       query.getRequest().setSearchFilter(equalFilter);
 
       if (SEARCH_CONFIG.source !== '') {
-        query.getRequest().addSource(SEARCH_CONFIG.source) ;
+        const sources = SEARCH_CONFIG.source.split('|');
+        sources.forEach(source => {
+            query.getRequest().addSource(source.trim());
+        });
       }
     },
     state: {

@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         hostname: "**",
       }
     ],
+    dangerouslyAllowSVG: true,
   },
   async headers() {
     return [

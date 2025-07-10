@@ -68,8 +68,11 @@ export const SearchResultsComponent = ({
     },
     query: (query): any => {
       query
-        if (SEARCH_CONFIG.source != '') {
-          query.getRequest().addSource(SEARCH_CONFIG.source) ;
+        if (SEARCH_CONFIG.source !== '') {
+          const sources = SEARCH_CONFIG.source.split('|');
+          sources.forEach(source => {
+              query.getRequest().addSource(source.trim());
+          });
         }
     },
   });

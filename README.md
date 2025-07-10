@@ -63,6 +63,10 @@ NEXT_PUBLIC_SEARCH_SOURCE=<INSERT SOURCE ID>
 You will need to replace the **Customer Key** and **API Key** with the values from the Developer Resources > Api Access in the CEC domain you are leveraging. We are generally using the domain called **Sales Engineering - AMS**.
 
 The **Source ID** will be generated from source you set up during the [CEC setup](https://sitecore1.sharepoint.com/:fl:/g/contentstorage/CSP_767ac533-ba73-4b47-9e6b-d9c9bba230a8/ETYosfOL5LpHiId-S6Ke7FgBgVPUzVzmLFoI4vSsoxHF6g?e=3SkbQ2&nav=cz0lMkZjb250ZW50c3RvcmFnZSUyRkNTUF83NjdhYzUzMy1iYTczLTRiNDctOWU2Yi1kOWM5YmJhMjMwYTgmZD1iJTIxTThWNmRuTzZSMHVlYTluSnU2SXdxSEV0NjNGdTJpbEVpcWpJTGNOZDd3YUEyY0ZUVDhEelQ1cTZjZ1paZEpLSiZmPTAxM1BQWjM2UldGQ1k3SEM3RVhKRFlSQjM2Sk9SSjUzQ1kmYz0lMkYmYT1Mb29wQXBwJnA9JTQwZmx1aWR4JTJGbG9vcC1wYWdlLWNvbnRhaW5lciZ4PSU3QiUyMnclMjIlM0ElMjJUMFJUVUh4emFYUmxZMjl5WlRFdWMyaGhjbVZ3YjJsdWRDNWpiMjE4WWlGTk9GWTJaRzVQTmxJd2RXVmhPVzVLZFRaSmQzRklSWFEyTTBaMU1tbHNSV2x4YWtsTVkwNWtOM2RoUVRKalJsUlVPRVI2VkRWeE5tTm5XbHBrU2t0S2ZEQXhNMUJRV2pNMlVVSllVVUZTTjBGUlRVVmFSRXRIUWtnMU4xTkxVME0zVFVVJTNEJTIyJTJDJTIyaSUyMiUzQSUyMmE0ZWJhOTAwLWE4NDYtNGMzYi1hYjc0LTZlNWFiNjcyZTEyYiUyMiU3RA%3D%3D). **If you haven’t generated your Source ID yet, make sure to complete that setup first before continuing**.
+If you need to use multiple sources, use the pipeline character to append multiple sources. Example:
+```bash
+NEXT_PUBLIC_SEARCH_SOURCE=1234|5678
+```
 
 Now you're ready to run the application.
 

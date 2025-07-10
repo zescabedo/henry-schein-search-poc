@@ -16,8 +16,11 @@ export const HomeHighlightedComponent = (): JSX.Element => {
     query: (query) => {
       query.getRequest().setSearchFilter(new FilterEqual('type', HIGHLIGHTED_ARTICLES_CONTENT_TYPE));
 
-      if (SEARCH_CONFIG.source != '') {
-        query.getRequest().addSource(SEARCH_CONFIG.source);
+      if (SEARCH_CONFIG.source !== '') {
+        const sources = SEARCH_CONFIG.source.split('|');
+        sources.forEach(source => {
+            query.getRequest().addSource(source.trim());
+        });
       }
     },
   });
