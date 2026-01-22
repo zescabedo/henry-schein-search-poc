@@ -16,6 +16,10 @@ export const FOOTER_BACKGROUND_COLOR = '#FFFFFF'
 // Changes the text color of the footer component. Must use Hex syntax
 export const FOOTER_TEXT_COLOR = '#111827'
 
+// Henry Schein brand colors
+export const HENRY_SCHEIN_RED = '#C8102E'
+export const HENRY_SCHEIN_BLUE = '#005EB8'
+
 // Change if you choose to use a custom hero widget
 export const HOME_HERO_RFKID = 'home_hero' 
 

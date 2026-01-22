@@ -13,20 +13,20 @@ type CardViewSwitcherProps = {
 
 const CardViewSwitcherComponent = ({ onToggle, defaultCardView, GridIcon, ListIcon }: CardViewSwitcherProps) => {
   return (
-    <CardViewSwitcher.Root onValueChange={onToggle} defaultValue={defaultCardView} className="inline-flex">
+    <CardViewSwitcher.Root onValueChange={onToggle} defaultValue={defaultCardView} className="inline-flex border border-gray-300 dark:border-gray-600 rounded p-0.5 bg-gray-100 dark:bg-gray-700">
       <CardViewSwitcher.Item
         value="grid"
         aria-label="Grid View"
-        className="mr-2 items-center rounded-md bg-white dark:bg-gray-800 text-gray-500 flex h-[30px] justify-center w-[30px] ml-0 hover:bg-gray-100 data-[state=on]:bg-gray-800  dark:data-[state=on]:bg-gray-300 data-[state=on]:text-white dark:data-[state=on]:text-gray-600 focus:outline-grey-800"
+        className="items-center rounded bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 flex h-9 justify-center w-9 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-[#005EB8] dark:hover:text-blue-400 data-[state=on]:bg-[#005EB8] data-[state=on]:text-white dark:data-[state=on]:bg-[#005EB8] dark:data-[state=on]:text-white focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all"
       >
-        <GridIcon />
+        <GridIcon className="w-4 h-4" />
       </CardViewSwitcher.Item>
       <CardViewSwitcher.Item
         value="list"
         aria-label="List View"
-        className="items-center rounded-md bg-white dark:bg-gray-800 text-gray-500 flex h-[30px] justify-center w-[30px] ml-0 hover:bg-gray-100 data-[state=on]:bg-gray-800  dark:data-[state=on]:bg-gray-300 data-[state=on]:text-white dark:data-[state=on]:text-gray-600 focus:outline-grey-800"
+        className="items-center rounded bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 flex h-9 justify-center w-9 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-[#005EB8] dark:hover:text-blue-400 data-[state=on]:bg-[#005EB8] data-[state=on]:text-white dark:data-[state=on]:bg-[#005EB8] dark:data-[state=on]:text-white focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all"
       >
-        <ListIcon />
+        <ListIcon className="w-4 h-4" />
       </CardViewSwitcher.Item>
     </CardViewSwitcher.Root>
   );

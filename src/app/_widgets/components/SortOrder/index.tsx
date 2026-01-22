@@ -14,19 +14,20 @@ const SortOrder = ({ options, selected }: SortOrderProps) => {
   const { onSortChange } = useSearchResultsActions();
   return (
     <SortSelect.Root defaultValue={options[selectedSortIndex]?.name} onValueChange={onSortChange}>
-      <SortSelect.Trigger className="cursor-pointer inline-flex items-center bg-transparent h-10 gap-1 py-1 px-4 border-0 focus:outline-gray-700">
-        <SortSelect.SelectValue>
-          {selectedSortIndex > -1 ? options[selectedSortIndex].label : ''}
+      <SortSelect.Trigger className="cursor-pointer inline-flex items-center bg-white dark:bg-gray-800 h-10 gap-2 py-2 px-4 border border-gray-300 dark:border-gray-600 rounded text-gray-900 dark:text-white hover:border-[#005EB8] dark:hover:border-blue-400 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all shadow-sm">
+        <span className="text-sm font-medium">Sort:</span>
+        <SortSelect.SelectValue className="text-sm font-semibold text-[#005EB8] dark:text-blue-400">
+          {selectedSortIndex > -1 ? options[selectedSortIndex].label : 'Select'}
         </SortSelect.SelectValue>
-        <SortSelect.Icon />
+        <SortSelect.Icon className="text-gray-500" />
       </SortSelect.Trigger>
-      <SortSelect.Content className="bg-gray-100 dark:bg-gray-700 shadow-[2px_2px_4px_#CFCFCF] z-[100] absolute top-8 focus-within:border-gray-700 min-w-[150px] rounded-md">
+      <SortSelect.Content className="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 z-[100] absolute top-10 focus-within:border-[#005EB8] min-w-[180px] rounded">
         <SortSelect.Viewport className="p-1 z-[50000]">
           {options.map((option: any) => (
             <SortSelect.Option
               value={option}
               key={option.name}
-              className="flex rounded-sm items-center p-1 m-1 leading-none cursor-pointer select-none whitespace-no-wrap h-6 px-1 hover:bg-gray-700 dark:hover:bg-gray-100 hover:text-gray-100 dark:hover:text-gray-700 data-[state=checked]:text-gray-700 data-[state=checked]:bg-white focus:outline-gray-700"
+              className="flex rounded items-center p-2 leading-none cursor-pointer select-none whitespace-no-wrap h-9 px-3 hover:bg-[#005EB8] dark:hover:bg-blue-600 hover:text-white data-[state=checked]:text-[#005EB8] data-[state=checked]:bg-blue-50 dark:data-[state=checked]:bg-blue-900/20 data-[state=checked]:font-semibold focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-colors text-sm"
             >
               <SortSelect.OptionText>{option.label}</SortSelect.OptionText>
             </SortSelect.Option>

@@ -10,6 +10,7 @@ import { ArticleCard, Presence, PreviewSearch } from '@sitecore-search/ui';
 import React from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
 
 const SEARCH_CONFIG = {
@@ -66,22 +67,50 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const target = e.target.query as HTMLInputElement;
-    router.push(`/search?q=${target.value}`);
+    const searchValue = target.value.trim();
+    // If empty, navigate to search page without query to show all results
+    if (searchValue === '') {
+      router.push('/search');
+    } else {
+      router.push(`/search?q=${encodeURIComponent(searchValue)}`);
+    }
     target.value = '';
   };
+
+  const handleSearchClick = (): void => {
+    const input = document.querySelector('input[name="query"]') as HTMLInputElement;
+    if (input) {
+      const searchValue = input.value.trim();
+      if (searchValue === '') {
+        router.push('/search');
+      } else {
+        router.push(`/search?q=${encodeURIComponent(searchValue)}`);
+      }
+      input.value = '';
+    }
+  };
+
   return (
     <PreviewSearch.Root>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="relative flex items-center">
         <PreviewSearch.Input
           name="query"
-          className="w-[800px] rounded-sm box-border py-1 px-1 focus:outline-solid focus:outline-1 focus:outline-gray-200 dark:focus:outline-gray-900 dark:border-gray-900 border-1 bg-gray-100 dark:bg-gray-800 dark:text-gray-100"
+          className="w-full rounded-md box-border py-2.5 pl-4 pr-12 focus:outline-solid focus:outline-2 focus:outline-[#005EB8] dark:focus:outline-[#005EB8] border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-100 text-gray-900 placeholder:text-gray-500 transition-all"
           onChange={keyphraseHandler}
           autoComplete="off"
-          placeholder="Type to search..."
+          placeholder="Search products, services, and more..."
         />
+        <button
+          type="submit"
+          onClick={handleSearchClick}
+          className="absolute right-2 p-2 text-[#005EB8] dark:text-blue-400 hover:text-[#C8102E] dark:hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2"
+          aria-label="Search"
+        >
+          <MagnifyingGlassIcon className="w-5 h-5" />
+        </button>
       </form>
       <PreviewSearch.Content
-        className="flex justify-center pt-0 h-[400px] shadow-[2px_5px_5px_5px_rgba(0,0,0,0.3)] transition-opacity	w-[var(--radix-popover-trigger-width)] bg-gray-100 dark:bg-gray-800"
+        className="flex justify-center pt-0 h-[400px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] transition-opacity	w-[var(--radix-popover-trigger-width)] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md mt-1"
       >
         <Spinner loading={loading} />
 
@@ -109,9 +138,9 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
                             onItemClick({ id: article.id, index, sourceId: article.source_id });
                             router.push('/detail/' + article.id);
                           }}
-                          className="flex box-border no-underline w-full text-black focus:shadow-md"
+                          className="flex box-border no-underline w-full text-gray-900 dark:text-white focus:shadow-md"
                         >
-                          <ArticleCard.Root className="w-full shadow-[2px_2px_4px_rgba(0,0,0,0.3)] rounded-md p-2 cursor-pointer block border-transparent border-solid border text-center focus-within:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] dark:text-white">
+                          <ArticleCard.Root className="w-full shadow-sm rounded-md p-3 cursor-pointer block border border-gray-200 dark:border-gray-600 text-center focus-within:shadow-md focus-within:border-[#005EB8] hover:shadow-md hover:border-[#C8102E] transition-all dark:text-white">
                             <div className="m-auto mb-[10px] relative h-[6em] flex justify-center items-center overflow-hidden">
                               <Image
                                 src={article.image_url}

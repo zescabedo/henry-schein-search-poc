@@ -14,9 +14,9 @@ type QueryResultsSummaryProps = {
     totalItemsReturned,
   }: QueryResultsSummaryProps) => {
     return (
-      <div className="font-bold my-auto mx-0">
-        Showing {itemsPerPage * (currentPage - 1) + 1} - {itemsPerPage * (currentPage - 1) + totalItemsReturned} of{' '}
-        {totalItems} results
+      <div className="text-sm text-gray-700 dark:text-gray-300">
+        Showing <span className="font-semibold text-gray-900 dark:text-white">{itemsPerPage * (currentPage - 1) + 1}</span> - <span className="font-semibold text-gray-900 dark:text-white">{itemsPerPage * (currentPage - 1) + totalItemsReturned}</span> of{' '}
+        <span className="font-semibold text-[#005EB8] dark:text-blue-400">{totalItems.toLocaleString()}</span> results
       </div>
     );
   };

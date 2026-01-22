@@ -26,9 +26,9 @@ const SearchPagination = ({ currentPage, totalPages }: SearchPaginationProps) =>
     >
       <Pagination.PrevPage
         onClick={(e) => e.preventDefault()}
-        className="cursor-pointer my-0 mx-2 data-[current=true]:hidden hover:text-gray-700 focus:outline-gray-700 dark:hover:text-gray-400 dark:focus:outline-gray-400"
+        className="cursor-pointer my-0 mx-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#005EB8] hover:text-white hover:border-[#005EB8] dark:hover:bg-blue-600 dark:hover:border-blue-600 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <ArrowLeftIcon />
+        <ArrowLeftIcon className="w-4 h-4" />
       </Pagination.PrevPage>
       <Pagination.Pages>
         {(pagination) =>
@@ -42,21 +42,21 @@ const SearchPagination = ({ currentPage, totalPages }: SearchPaginationProps) =>
                 aria-label={`Page ${page}`}
                 page={page as number}
                 onClick={(e) => e.preventDefault()}
-                className="cursor-pointer my-0 mx-2 data-[current=true]:text-gray-700 dark:data-[current=true]:text-gray-400 data-[current=true]:pointer-events-none data-[current=true]:no-underline hover:text-gray-700 focus:outline-gray-700 dark:hover:text-gray-400 dark:focus:outline-gray-400"
+                className="cursor-pointer my-0 mx-1 px-3 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 data-[current=true]:text-white data-[current=true]:bg-[#005EB8] data-[current=true]:border-[#005EB8] data-[current=true]:pointer-events-none data-[current=true]:no-underline data-[current=true]:font-semibold hover:text-[#005EB8] dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-[#005EB8] focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all"
               >
                 {page}
               </Pagination.Page>
             ) : (
-              <span key={type}>...</span>
+              <span key={type} className="mx-1 px-2 text-gray-500 dark:text-gray-400">...</span>
             ),
           )
         }
       </Pagination.Pages>
       <Pagination.NextPage
         onClick={(e) => e.preventDefault()}
-        className="cursor-pointer my-0 mx-2 data-[current=true]:hidden hover:text-gray-700 focus:outline-gray-700 dark:hover:text-gray-400 dark:focus:outline-gray-400"
+        className="cursor-pointer my-0 mx-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#005EB8] hover:text-white hover:border-[#005EB8] dark:hover:bg-blue-600 dark:hover:border-blue-600 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <ArrowRightIcon />
+        <ArrowRightIcon className="w-4 h-4" />
       </Pagination.NextPage>
     </Pagination.Root>
   );

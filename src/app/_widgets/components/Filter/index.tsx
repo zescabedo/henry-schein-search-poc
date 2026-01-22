@@ -17,22 +17,22 @@ const Filter = () => {
   const selectedFacetsFromApi = useSearchResultsSelectedFilters();
   const { onRemoveFilter, onClearFilters } = useSearchResultsActions();
   return selectedFacetsFromApi.length > 0 ? (
-    <div className="mb-4">
-      <div className="flex flex-row justify-between items-center mb-2">
-        <h3 className="text-sm md:text-base font-semibold">Filters</h3>
+    <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-600">
+      <div className="flex flex-row justify-between items-center mb-4">
+        <h3 className="text-base font-bold text-gray-900 dark:text-white">Active Filters</h3>
         <button
           onClick={onClearFilters}
-          className="text-sm font-medium text-gray-800 dark:text-gray-100 underline text-opacity-75 hover:text-gray-900 focus:outline-gray-900"
+          className="text-sm font-semibold text-[#005EB8] dark:text-blue-400 hover:text-[#C8102E] dark:hover:text-red-400 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 rounded transition-colors underline"
         >
-          Clear Filters
+          Clear All
         </button>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap gap-2">
         {selectedFacetsFromApi.map((selectedFacet) => (
           <button
             key={`${selectedFacet.facetId}${selectedFacet.facetLabel}${selectedFacet.valueLabel}`}
             onClick={() => onRemoveFilter(selectedFacet)}
-            className="text-ellipsis text-xs font-medium text-white bg-gray-400 rounded-md pl-2 pr-5 py-1.5 m-1 whitespace-no-wrap max-w-full overflow-hidden relative cursor-pointer before:content-[''] before:-rotate-45 before:absolute before:w-2.5 before:h-0.5 before:right-2 before:top-2/4 before:bg-white after:content-[''] after:rotate-45 after:absolute after:w-2.5 after:h-0.5 after:right-2 after:top-2/4 after:bg-white focus:outline-indigo-500"
+            className="text-sm font-medium text-white bg-[#005EB8] hover:bg-[#C8102E] rounded px-3 py-1.5 whitespace-nowrap relative pr-8 cursor-pointer transition-all duration-200 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 before:content-['×'] before:absolute before:right-2 before:top-1/2 before:-translate-y-1/2 before:text-white before:text-lg before:leading-none before:font-bold"
           >
             {buildFacetLabel(selectedFacet)}
           </button>

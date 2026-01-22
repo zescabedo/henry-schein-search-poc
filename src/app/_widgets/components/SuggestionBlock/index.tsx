@@ -20,10 +20,10 @@ const SuggestionBlock = ({ items, title, blockId, filterAttribute, disabled }: S
     <>
       {items.length > 0 && (
         <PreviewSearch.SuggestionsGroup className="flex flex-1 flex-col" id={blockId} filterAttribute={filterAttribute}>
-          <h2 className="box-border pl-1 block text-lg font-bold m-2 dark:text-gray-100">{title}</h2>
+          <h2 className="box-border pl-1 block text-lg font-bold m-2 text-gray-900 dark:text-gray-100">{title}</h2>
           {items.map(({ text }) => (
             <PreviewSearch.SuggestionTrigger
-              className="cursor-pointer p-2 text-sm data-[state=active]:outline-none data-[state=active]:text-gray-900 dark:data-[state=active]:text-gray-200  data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700  focus:outline-none focus:bg-white dark:focus:bg-gray-700 focus:text-bold hover:outline-none hover:text-gray-900 hover:bg-white dark:hover:text-gray-200 dark:hover:bg-gray-700 dark:text-gray-100 "
+              className="cursor-pointer p-2.5 text-sm rounded-md mx-1 data-[state=active]:outline-none data-[state=active]:text-[#005EB8] dark:data-[state=active]:text-blue-400 data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-900/20 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 focus:bg-blue-50 dark:focus:bg-blue-900/20 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-[#005EB8] dark:hover:text-blue-400 text-gray-700 dark:text-gray-300 transition-colors"
               id={text}
               key={text}
               asChild

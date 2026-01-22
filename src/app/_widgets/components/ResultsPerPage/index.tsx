@@ -10,8 +10,8 @@ type ResultsPerPageProps = {
 const ResultsPerPage = ({ defaultItemsPerPage }: ResultsPerPageProps) => {
   const { onResultsPerPageChange } = useSearchResultsActions();
   return (
-    <div>
-      <label className="pr-1">Results Per Page</label>
+    <div className="flex items-center gap-2">
+      <label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Show:</label>
       <Select.Root
         defaultValue={String(defaultItemsPerPage)}
         onValueChange={(v) =>
@@ -20,29 +20,29 @@ const ResultsPerPage = ({ defaultItemsPerPage }: ResultsPerPageProps) => {
           })
         }
       >
-        <Select.Trigger className="cursor-pointer inline-flex items-center bg-transparent h-10 gap-1 py-1 px-4 border-0 focus:outline-gray-700">
-          <Select.SelectValue />
-          <Select.Icon />
+        <Select.Trigger className="cursor-pointer inline-flex items-center bg-white dark:bg-gray-800 h-10 gap-2 py-2 px-4 border border-gray-300 dark:border-gray-600 rounded text-gray-900 dark:text-white hover:border-[#005EB8] dark:hover:border-blue-400 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-all shadow-sm">
+          <Select.SelectValue className="text-sm font-semibold text-[#005EB8] dark:text-blue-400" />
+          <Select.Icon className="text-gray-500" />
         </Select.Trigger>
-        <Select.SelectContent className="bg-gray-100 dark:bg-gray-700 shadow-[2px_2px_4px_#CFCFCF] z-[100] min-w-[100px] rounded-md ">
+        <Select.SelectContent className="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 z-[100] min-w-[100px] rounded">
           <Select.Viewport className="p-1">
             <Select.SelectItem
               value="10"
-              className="flex rounded-sm items-center leading-none cursor-pointer select-none whitespace-no-wrap h-6 px-1 hover:bg-gray-700 hover:text-gray-100  dark:hover:bg-gray-100 dark:hover:text-gray-700  data-[state=checked]:text-gray-700 data-[state=checked]:bg-gray-100  dark:data-[state=checked]:text-gray-100 dark:data-[state=checked]:bg-gray-700 focus:outline-gray-700"
+              className="flex rounded items-center leading-none cursor-pointer select-none whitespace-no-wrap h-9 px-3 hover:bg-[#005EB8] hover:text-white data-[state=checked]:text-[#005EB8] data-[state=checked]:bg-blue-50 dark:data-[state=checked]:bg-blue-900/20 data-[state=checked]:font-semibold focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-colors text-sm"
             >
               <SortSelect.OptionText>10</SortSelect.OptionText>
             </Select.SelectItem>
 
             <Select.SelectItem
               value="25"
-              className="flex rounded-sm items-center leading-none cursor-pointer select-none whitespace-no-wrap h-6 px-1 hover:bg-gray-700 hover:text-gray-100  dark:hover:bg-gray-100 dark:hover:text-gray-700  data-[state=checked]:text-gray-700 data-[state=checked]:bg-gray-100  dark:data-[state=checked]:text-gray-100 dark:data-[state=checked]:bg-gray-700 focus:outline-gray-700"
+              className="flex rounded items-center leading-none cursor-pointer select-none whitespace-no-wrap h-9 px-3 hover:bg-[#005EB8] hover:text-white data-[state=checked]:text-[#005EB8] data-[state=checked]:bg-blue-50 dark:data-[state=checked]:bg-blue-900/20 data-[state=checked]:font-semibold focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-colors text-sm"
             >
               <SortSelect.OptionText>25</SortSelect.OptionText>
             </Select.SelectItem>
 
             <Select.SelectItem
               value="50"
-              className="flex rounded-sm items-center leading-none cursor-pointer select-none whitespace-no-wrap h-6 px-1 hover:bg-gray-700 hover:text-gray-100  dark:hover:bg-gray-100 dark:hover:text-gray-700  data-[state=checked]:text-gray-700 data-[state=checked]:bg-gray-100  dark:data-[state=checked]:text-gray-100 dark:data-[state=checked]:bg-gray-700 focus:outline-gray-700"
+              className="flex rounded items-center leading-none cursor-pointer select-none whitespace-no-wrap h-9 px-3 hover:bg-[#005EB8] hover:text-white data-[state=checked]:text-[#005EB8] data-[state=checked]:bg-blue-50 dark:data-[state=checked]:bg-blue-900/20 data-[state=checked]:font-semibold focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 transition-colors text-sm"
             >
               <SortSelect.OptionText>50</SortSelect.OptionText>
             </Select.SelectItem>

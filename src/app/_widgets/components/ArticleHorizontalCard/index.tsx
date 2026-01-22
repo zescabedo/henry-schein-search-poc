@@ -22,9 +22,9 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
   return (
     <ArticleCard.Root
       key={article.id}
-      className={`group flex flex-row p-4 my-4 flex-nowrap max-h-52 w-full relative border border-gray-300 dark:border-gray-600 rounded-md hover:shadow-lg hover:scale-105 hover:transition-all hover:ease-linear	hover:duration-300 focus-within:scale-105 focus-within:transition-all focus-within:ease-linear focus-within:duration-300 focus-within:hover:shadow-lg ${className}`}
+      className={`group flex flex-row p-5 my-4 flex-nowrap max-h-52 w-full relative border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:shadow-lg hover:border-[#C8102E] hover:transition-all hover:ease-linear hover:duration-300 focus-within:border-[#005EB8] focus-within:transition-all focus-within:ease-linear focus-within:duration-300 focus-within:hover:shadow-lg bg-white dark:bg-gray-800 ${className}`}
     >
-      <div className="w-[25%] flex-none overflow-hidden bg-gray-200 ">
+      <div className="w-[25%] flex-none overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-l-lg">
         <Image
           src={validImageUrl}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -33,9 +33,9 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
           height={115}
         />
       </div>
-      <div className="pl-4 grow flex-col">
+      <div className="pl-5 grow flex-col">
         <a
-          className="focus:outline-indigo-500"
+          className="focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 rounded"
           href={article.url}
           onClick={(event) => {
             event.preventDefault();
@@ -48,7 +48,7 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
           }}
         >
           <span aria-hidden="true" className="absolute inset-0"></span>
-          <ArticleCard.Title className="text-base">{article.name || article.title}</ArticleCard.Title>
+          <ArticleCard.Title className="text-base text-gray-900 dark:text-white group-hover:text-[#C8102E] transition-colors">{article.name || article.title}</ArticleCard.Title>
         </a>
         <ArticleCard.Subtitle className="mt-3 text-sm text-gray-600 dark:text-gray-300 h-[100px] overflow-hidden">
           {article.subtitle}

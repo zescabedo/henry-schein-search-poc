@@ -64,7 +64,8 @@ export const SearchResultsComponent = ({
       sortType: defaultSortType,
       page: defaultPage,
       itemsPerPage: defaultItemsPerPage,
-      keyphrase: defaultKeyphrase,
+      // Use wildcard "*" for empty keyphrase to return all results
+      keyphrase: defaultKeyphrase === '' ? '*' : defaultKeyphrase,
     },
     query: (query): any => {
       query
@@ -89,8 +90,8 @@ export const SearchResultsComponent = ({
     );
   }
   return (
-    <div>
-      <div className="flex relative max-w-full px-4 text-black dark:text-gray-100 text-opacity-75">
+    <div className="w-full">
+      <div className="flex relative max-w-full text-gray-900 dark:text-gray-100">
         {isFetching && (
           <div className="w-full h-full fixed top-0 left-0 bottom-0 right-0 z-30 bg-white dark:bg-gray-800 opacity-50">
             <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] flex flex-col justify-center items-center z-40">
@@ -100,64 +101,76 @@ export const SearchResultsComponent = ({
         )}
         {totalItems > 0 && (
           <React.Fragment key="1">
-            <section className="flex flex-col flex-none relative mt-4 mr-8 w-[25%]">
-              <Filter />
-
-              <SearchFacets facets={facets} />
-            </section>
-            <section className="flex flex-col flex-[4_1_0%]">
-              {/* Sort Select */}
-              <section className="flex justify-between text-xs">
-                {totalItems > 0 && (
-                  <QueryResultsSummary
-                    currentPage={page}
-                    itemsPerPage={itemsPerPage}
-                    totalItems={totalItems}
-                    totalItemsReturned={articles.length}
-                  />
-                )}
-                <div>
-                  <CardViewSwitcher
-                    onToggle={onToggle}
-                    defaultCardView={defaultCardView}
-                    GridIcon={GridIcon}
-                    ListIcon={ListBulletIcon}
-                  />
-                  <SortOrder options={sortChoices} selected={sortType} />
-                </div>
-              </section>
-
-              {/* Results */}
-              {dir === 'grid' ? (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 md:gap-x-5 xl:gap-x-6 gap-y-3 xl:gap-y-4 ">
-                  {articles.map((a, index) => (
-                    <ArticleItemCard key={a.id} article={a as ArticleModel} index={index} onItemClick={onItemClick} />
-                  ))}
-                </div>
-              ) : (
-                <div className="w-full">
-                  {articles.map((a, index) => (
-                    <ArticleHorizontalItemCard
-                      key={a.id}
-                      article={a as ArticleModel}
-                      index={index}
-                      onItemClick={onItemClick}
-                      displayText={true}
-                    />
-                  ))}
-                </div>
-              )}
-
-              <div className="flex flex-col md:flex-row md:justify-between text-xs">
-                <ResultsPerPage defaultItemsPerPage={defaultItemsPerPage} />
-                <SearchPagination currentPage={page} totalPages={totalPages} />
+            {/* Left Sidebar - Filters */}
+            <aside className="flex flex-col flex-none relative w-[280px] mr-8">
+              <div className="bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 p-5">
+                <Filter />
+                <SearchFacets facets={facets} />
               </div>
-            </section>
+            </aside>
+
+            {/* Main Content Area */}
+            <main className="flex flex-col flex-1 min-w-0">
+              {/* Top Bar - Results Summary and Controls */}
+              <div className="bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 p-4 mb-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  {totalItems > 0 && (
+                    <QueryResultsSummary
+                      currentPage={page}
+                      itemsPerPage={itemsPerPage}
+                      totalItems={totalItems}
+                      totalItemsReturned={articles.length}
+                    />
+                  )}
+                  <div className="flex items-center gap-3">
+                    <CardViewSwitcher
+                      onToggle={onToggle}
+                      defaultCardView={defaultCardView}
+                      GridIcon={GridIcon}
+                      ListIcon={ListBulletIcon}
+                    />
+                    <SortOrder options={sortChoices} selected={sortType} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Results Grid/List */}
+              <div className="bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 p-6">
+                {dir === 'grid' ? (
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {articles.map((a, index) => (
+                      <ArticleItemCard key={a.id} article={a as ArticleModel} index={index} onItemClick={onItemClick} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="w-full space-y-4">
+                    {articles.map((a, index) => (
+                      <ArticleHorizontalItemCard
+                        key={a.id}
+                        article={a as ArticleModel}
+                        index={index}
+                        onItemClick={onItemClick}
+                        displayText={true}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom Bar - Pagination and Results Per Page */}
+              <div className="bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 p-4 mt-4">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                  <ResultsPerPage defaultItemsPerPage={defaultItemsPerPage} />
+                  <SearchPagination currentPage={page} totalPages={totalPages} />
+                </div>
+              </div>
+            </main>
           </React.Fragment>
         )}
         {totalItems <= 0 && !isFetching && (
-          <div className="w-full flex justify-center">
-            <h3>0 Results</h3>
+          <div className="w-full flex flex-col items-center justify-center py-16 bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600">
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">No results found</h3>
+            <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filters</p>
           </div>
         )}
       </div>

@@ -6,12 +6,22 @@ import { HOME_HERO_RFKID, HIGHLIGHTED_ARTICLES_RFKID, DEFAULT_QUESTION } from '.
 import withPageTracking from '@/app/_hocs/withPageTracking';
 import HomeHighlighted from '@/app/_widgets/HomeHighlighted';
 import QuestionsAnswers from '@/app/_widgets/QuestionsAnswers'
+import Recommendation from '@/app/_widgets/Recommendation';
 import { HTMBlockWidget } from '@sitecore-search/react';
 
 const Home = (): JSX.Element => {
   return (
     <>
       <HTMBlockWidget rfkId={HOME_HERO_RFKID} />
+      {/* Product Recommendations - 4 Column Grid */}
+      <div className="bg-white dark:bg-gray-700 py-12">
+        <Recommendation 
+          rfkId="rfkid_recommendations" 
+          title=""
+          defaultItemsPerPage={4}
+          entity="product"
+        />
+      </div>
       <div className="mx-auto w-[80%]">
         <QuestionsAnswers
             rfkId="rfkid_qa"

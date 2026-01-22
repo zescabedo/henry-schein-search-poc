@@ -15,9 +15,9 @@ type Question = {
 
 const MainQuestionComponent = ({ answer, question }: Question) => {
   return (
-    <div className="p-3 dark:text-gray-100">
-      <h4 className="text-lg font-bold ">{question}</h4>
-      <p className="mt-2">{answer}</p>
+    <div className="p-4 dark:text-gray-100">
+      <h4 className="text-lg font-bold text-gray-900 dark:text-white">{question}</h4>
+      <p className="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{answer}</p>
     </div>
   );
 };
@@ -31,16 +31,16 @@ const RelatedQuestionsComponent = ({ relatedQuestions = [] }: RelatedQuestionsPr
     <div className="dark:text-gray-100">
       {relatedQuestions.length > 0 && (
         <Accordion className="w-full mt-4 px-2" type="multiple">
-          <h4 className="text-md font-bold mb-4">People also ask ...</h4>
+          <h4 className="text-md font-bold mb-4 text-gray-900 dark:text-white">People also ask ...</h4>
           {relatedQuestions.map(({ answer, question }, index) => (
-            <Item className="w-full cursor-pointer border-b dark:border-b-gray-600 py-4" value={`${answer}-${index}`} key={index}>
+            <Item className="w-full cursor-pointer border-b border-gray-200 dark:border-b-gray-600 py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors" value={`${answer}-${index}`} key={index}>
               <Header>
-                <Trigger className="w-full flex justify-between gap-x-2 text-left text-sm">
+                <Trigger className="w-full flex justify-between gap-x-2 text-left text-sm text-gray-900 dark:text-white hover:text-[#005EB8] dark:hover:text-blue-400 focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 rounded transition-colors">
                   <span>{question}</span>
-                  <ChevronDownIcon height={20} width={20} />
+                  <ChevronDownIcon height={20} width={20} className="text-[#005EB8] dark:text-blue-400 flex-shrink-0" />
                 </Trigger>
               </Header>
-              <Content className="pt-5 font-light text-sm">{answer}</Content>
+              <Content className="pt-5 font-light text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{answer}</Content>
             </Item>
           ))}
         </Accordion>
@@ -77,7 +77,7 @@ export const QuestionsAnswersComponent = ({ defaultKeyphrase = '', defaultRelate
   return (
     <div>
       {((answer && question) || relatedQuestionsResponse.length > 0) && (
-        <div className="rounded-md border border-gray-200 dark:border-gray-600 p-3 my-5 shadow-md shadow-slate-300 dark:shadow-slate-500">
+        <div className="rounded-lg border-2 border-gray-200 dark:border-gray-600 p-4 my-6 shadow-md bg-white dark:bg-gray-800">
           {answer && question && <MainQuestionComponent answer={answer} question={question} />}
           {relatedQuestionsResponse.length > 0 && (
             <RelatedQuestionsComponent relatedQuestions={relatedQuestionsResponse} />
