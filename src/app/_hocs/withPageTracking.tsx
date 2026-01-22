@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 
 import { ENTITY_CONTENT, PAGE_EVENTS_DEFAULT, PAGE_EVENTS_PDP } from '@/app/_data/constants';
@@ -15,27 +15,37 @@ export const PageEventContext = React.createContext({});
  */
 const withPageTracking =
   (Component: React.ElementType, pageType = PAGE_EVENTS_DEFAULT) => {
-    const WrappedComponent = (props: Record<string, unknown>) => {
-    const uri = useUri();
-    const  params = useParams<{ slug: string; }>();
-    const id = params.slug;
-    useEffect(() => {
-      PageController.getContext().setPageUri(uri);
+    const PageTrackingInner = ({ Child }: { Child: React.ElementType }) => {
+      const uri = useUri();
+      const params = useParams<{ slug: string }>();
+      const id = params?.slug;
+      useEffect(() => {
+        PageController.getContext().setPageUri(uri);
 
-      if (id && pageType === PAGE_EVENTS_PDP) {
-        trackEntityPageViewEvent(ENTITY_CONTENT, { items:  [{ id }] });
-      } else {
-        trackPageViewEvent(pageType);
-      }
-    }, [uri, id]);
+        if (id && pageType === PAGE_EVENTS_PDP) {
+          trackEntityPageViewEvent(ENTITY_CONTENT, { items: [{ id }] });
+        } else {
+          trackPageViewEvent(pageType);
+        }
+      }, [uri, id, pageType]);
 
       return (
         <PageEventContext.Provider value={pageType}>
-          <Component {...{ props }} />
+          <Child />
         </PageEventContext.Provider>
       );
     };
-    WrappedComponent.displayName = `withPageTracking(${Component.displayName || Component.name || 'Component'})`;
+
+    const WrappedComponent = () => (
+      <Suspense fallback={<Component />}>
+        <PageTrackingInner Child={Component} />
+      </Suspense>
+    );
+
+    const componentName = typeof Component === 'function'
+      ? (Component as React.ComponentType).displayName || (Component as React.ComponentType).name || 'Component'
+      : 'Component';
+    WrappedComponent.displayName = `withPageTracking(${componentName})`;
     return WrappedComponent;
   };
 

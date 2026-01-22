@@ -7,12 +7,12 @@ type ProductItemCardProps = {
   className?: string;
   product: {
     id: string;
-    name: string;
+    name?: string;
     title?: string;
     sku?: string;
     image_url?: string;
-    url: string;
-    source_id: string;
+    url?: string;
+    source_id?: string;
     price?: number;
     type?: string;
   };
@@ -43,7 +43,7 @@ const ProductItemCard = ({ className = '', product, index, onItemClick }: Produc
           className="focus:outline-[#005EB8] focus:outline-2 focus:outline-offset-2 rounded"
           href={product.url || `/detail/${product.id}`}
           onClick={() => {
-            if (onItemClick) {
+            if (onItemClick && product.source_id) {
               onItemClick({
                 id: product.id,
                 index,

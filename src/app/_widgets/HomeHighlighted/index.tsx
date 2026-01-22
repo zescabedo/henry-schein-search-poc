@@ -2,17 +2,21 @@
 import { JSX } from 'react';
 import { HIGHLIGHTED_ARTICLES_CONTENT_TYPE } from '@/app/_data/customizations';
 import ArticleCard from '@/app/_widgets/components/ArticleCard';
+import type { ArticleModel } from '@/app/_widgets/SearchResults';
+import type { SearchResultsInitialState } from '@sitecore-search/react';
 import { FilterEqual, WidgetDataType, useSearchResults, widget } from '@sitecore-search/react';
 
 const SEARCH_CONFIG = {
   source: process.env.NEXT_PUBLIC_SEARCH_SOURCE as string,
 };
 
+type InitialState = SearchResultsInitialState<'itemsPerPage'>;
+
 export const HomeHighlightedComponent = (): JSX.Element => {
   const {
     actions: { onItemClick },
     queryResult: { data: { content: articles = [] } = {} },
-  } = useSearchResults({
+  } = useSearchResults<ArticleModel, InitialState>({
     query: (query) => {
       query.getRequest().setSearchFilter(new FilterEqual('type', HIGHLIGHTED_ARTICLES_CONTENT_TYPE));
 
@@ -22,6 +26,9 @@ export const HomeHighlightedComponent = (): JSX.Element => {
             query.getRequest().addSource(source.trim());
         });
       }
+    },
+    state: {
+      itemsPerPage: 3,
     },
   });
   const articlesToShow = articles.slice(0, 3);

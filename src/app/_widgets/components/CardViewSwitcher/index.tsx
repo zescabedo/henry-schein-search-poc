@@ -7,8 +7,8 @@ import { CardViewSwitcher } from '@sitecore-search/ui';
 type CardViewSwitcherProps = {
   onToggle: (value: string) => void;
   defaultCardView: 'list' | 'grid';
-  GridIcon: React.FC;
-  ListIcon: React.FC;
+  GridIcon: React.ComponentType<{ className?: string }>;
+  ListIcon: React.ComponentType<{ className?: string }>;
 };
 
 const CardViewSwitcherComponent = ({ onToggle, defaultCardView, GridIcon, ListIcon }: CardViewSwitcherProps) => {

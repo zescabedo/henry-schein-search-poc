@@ -6,7 +6,7 @@ import Header from '@/app/_components/Header';
 import DataBar from '@/app/_components/DataBar';
  import { LanguageContext } from '@/app/_contexts/languageContext';
  import useLanguage from '@/app/_hooks/useLanguage';
-import { SEOWidget, WidgetsProvider } from '@sitecore-search/react';
+import { SEOWidget, WidgetsProvider, type Environment } from '@sitecore-search/react';
 import { useEffect } from "react";
 
 const geistSans = Geist({
@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 const SEARCH_CONFIG = {
-  env: process.env.NEXT_PUBLIC_SEARCH_ENV as 'prod' | 'dev' | undefined,
+  env: (process.env.NEXT_PUBLIC_SEARCH_ENV || 'prod') as Environment,
   customerKey: process.env.NEXT_PUBLIC_SEARCH_CUSTOMER_KEY,
   apiKey: process.env.NEXT_PUBLIC_SEARCH_API_KEY,
 };

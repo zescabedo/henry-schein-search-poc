@@ -2,7 +2,7 @@
 
 
 // Overrides Sitecore logo in Header - Copy full logo URL from your customer's website
-export const LOGO_IMAGE_URL = ''; 
+export const LOGO_IMAGE_URL: string = ''; 
 
 // helps adjust size of logo, if needed
 export const LOGO_IMAGE_HEIGHT = '30' 

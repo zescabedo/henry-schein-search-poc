@@ -8,12 +8,12 @@ type ArticleItemCardProps = {
   className?: string;
   article: {
     id: string;
-    name: string;
-    title: string;
-    type: string;
+    name?: string;
+    title?: string;
+    type?: string;
     image_url?: string;
-    url: string;
-    source_id: string;
+    url?: string;
+    source_id?: string;
   };
   index: number;
   onItemClick?: ActionProp<ItemClickedAction>;
@@ -23,7 +23,7 @@ const ArticleItemCard = ({ className = '', article, index, onItemClick }: Articl
   const validImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
 
   const handleClick = () => {
-    if (onItemClick) {
+    if (onItemClick && article.source_id) {
       onItemClick({
         id: article.id,
         index,
@@ -41,7 +41,7 @@ const ArticleItemCard = ({ className = '', article, index, onItemClick }: Articl
         <Image
           src={validImageUrl}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-          alt={article.name || article.title}
+          alt={article.name || article.title || 'Article'}
           width={500}
           height={115}
           loading="lazy"
