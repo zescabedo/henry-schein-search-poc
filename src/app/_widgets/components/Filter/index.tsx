@@ -6,7 +6,7 @@ import { useSearchResultsActions, useSearchResultsSelectedFilters } from '@sitec
 const buildRangeLabel = (min: number | undefined, max: number | undefined): string => {
   return typeof min === 'undefined' ? `< $${max}` : typeof max === 'undefined' ? ` > $${min}` : `$${min} - $${max}`;
 };
-const buildFacetLabel = (selectedFacet: any) => {
+const buildFacetLabel = (selectedFacet: { min?: number; max?: number; valueLabel?: string }) => {
   if ('min' in selectedFacet || 'max' in selectedFacet) {
     return `${buildRangeLabel(selectedFacet.min, selectedFacet.max)}`;
   }

@@ -17,7 +17,7 @@ function useLanguage() {
     setLanguage(language);
     PageController.getContext().setLocaleLanguage(language);
     PageController.getContext().setLocaleCountry(locales[language].country);
-  }, [language]);
+  }, [language, setLanguage]);
   return { language, setLanguage } as const;
 }
 

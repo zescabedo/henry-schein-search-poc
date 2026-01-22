@@ -11,7 +11,6 @@ const SEARCH_CONFIG = {
 };
 
 type RecommendationProps = {
-  rfkId: string;
   title?: string;
   defaultItemsPerPage?: number;
   entity?: 'content' | 'product';
@@ -20,7 +19,6 @@ type RecommendationProps = {
 type InitialState = RecommendationInitialState<'itemsPerPage'>;
 
 export const RecommendationComponent = ({
-  rfkId,
   title = 'Recommended for You',
   defaultItemsPerPage = 4,
   entity = 'content',
@@ -35,7 +33,7 @@ export const RecommendationComponent = ({
     state: {
       itemsPerPage: defaultItemsPerPage,
     },
-    query: (query): any => {
+    query: (query) => {
       if (SEARCH_CONFIG.source !== '') {
         const sources = SEARCH_CONFIG.source.split('|');
         sources.forEach(source => {
@@ -71,7 +69,7 @@ export const RecommendationComponent = ({
             entity === 'product' ? (
               <ProductItemCard
                 key={item.id}
-                product={item as any}
+                product={item}
                 index={index}
                 onItemClick={onItemClick}
               />

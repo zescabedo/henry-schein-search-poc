@@ -14,8 +14,8 @@ export const PageEventContext = React.createContext({});
  * This is the purpose of this hoc, set page uri and track the page view event
  */
 const withPageTracking =
-  (Component: React.ElementType, pageType = PAGE_EVENTS_DEFAULT) =>
-  (props: any) => {
+  (Component: React.ElementType, pageType = PAGE_EVENTS_DEFAULT) => {
+    const WrappedComponent = (props: Record<string, unknown>) => {
     const uri = useUri();
     const  params = useParams<{ slug: string; }>();
     const id = params.slug;
@@ -29,11 +29,14 @@ const withPageTracking =
       }
     }, [uri, id]);
 
-    return (
-      <PageEventContext.Provider value={pageType}>
-        <Component {...{ props }} />
-      </PageEventContext.Provider>
-    );
+      return (
+        <PageEventContext.Provider value={pageType}>
+          <Component {...{ props }} />
+        </PageEventContext.Provider>
+      );
+    };
+    WrappedComponent.displayName = `withPageTracking(${Component.displayName || Component.name || 'Component'})`;
+    return WrappedComponent;
   };
 
 export default withPageTracking;

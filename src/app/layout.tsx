@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 const SEARCH_CONFIG = {
-  env: process.env.NEXT_PUBLIC_SEARCH_ENV as any,
+  env: process.env.NEXT_PUBLIC_SEARCH_ENV as 'prod' | 'dev' | undefined,
   customerKey: process.env.NEXT_PUBLIC_SEARCH_CUSTOMER_KEY,
   apiKey: process.env.NEXT_PUBLIC_SEARCH_API_KEY,
 };

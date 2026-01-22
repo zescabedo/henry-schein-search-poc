@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import Image from 'next/image';
 
 import { DEFAULT_IMAGE } from '@/app/_data/constants';
 import type { ArticleModel } from '@/app/_widgets/SearchResults';
@@ -47,7 +48,7 @@ export const ArticleDetailComponent = ({ id }: ArticleDetailProps): JSX.Element 
           <div className="text-left leading-tight text-base text-gray-700 dark:text-gray-100">{mainArticle?.description}</div>
         </div>
         <div className="max-w-[50%] min-h-[300px] flex items-center">
-          <img className="max-w-[500px]" src={mainArticle.image_url || DEFAULT_IMAGE} />
+          <Image className="max-w-[500px]" src={mainArticle.image_url || DEFAULT_IMAGE} alt={mainArticle.name || mainArticle.title || 'Article image'} width={500} height={300} />
         </div>
       </div>
     </div>

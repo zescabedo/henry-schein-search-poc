@@ -22,8 +22,6 @@ const CarouselComponent = ({
   items,
   title,
   className = '',
-  autoPlay = false,
-  autoPlayInterval = 5000,
   onNavigationNext,
   onNavigationPrev,
 }: CarouselProps) => {

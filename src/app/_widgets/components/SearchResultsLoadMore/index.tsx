@@ -14,7 +14,6 @@ const SearchResultsLoadMoreComponent = ({ className = '' }: SearchResultsLoadMor
       data: { total_item: totalItems = 0, content: articles = [] } = {},
       isFetching,
     },
-    state: { itemsPerPage },
   } = useSearchResults<ArticleModel>();
 
   const hasMore = articles.length < totalItems;

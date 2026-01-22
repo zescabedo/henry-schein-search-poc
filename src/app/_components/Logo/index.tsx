@@ -4,7 +4,7 @@ import Image from 'next/image';
 const Logo = () => {
   // Use custom logo URL if provided, otherwise use Henry Schein logo
   if (logoUrl && logoUrl.includes('https')) {
-    return <img src={logoUrl} alt="Customer Logo" className="mr-8" style={{height: `${LOGO_IMAGE_HEIGHT}px`}} />
+    return <Image src={logoUrl} alt="Customer Logo" className="mr-8" width={248} height={LOGO_IMAGE_HEIGHT} style={{height: `${LOGO_IMAGE_HEIGHT}px`}} />
   }
 
   // Default to Henry Schein Dental logo

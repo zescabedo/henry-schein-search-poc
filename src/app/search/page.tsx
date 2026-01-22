@@ -21,7 +21,7 @@ const Search = (): JSX.Element => {
               'Search Results'
             ) : (
               <>
-                Search Results for <span className="text-[#005EB8] dark:text-blue-400">"{query}"</span>
+                Search Results for <span className="text-[#005EB8] dark:text-blue-400">&quot;{query}&quot;</span>
               </>
             )}
           </h1>

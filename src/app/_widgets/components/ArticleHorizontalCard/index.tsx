@@ -10,7 +10,15 @@ import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
 type ArticleCardItemCardProps = {
   className?: string;
   displayText?: boolean;
-  article: any;
+  article: {
+    id: string;
+    name?: string;
+    title?: string;
+    subtitle?: string;
+    url?: string;
+    image_url?: string;
+    source_id?: string;
+  };
   onItemClick: ActionProp<ItemClickedAction>;
   index: number;
 };
